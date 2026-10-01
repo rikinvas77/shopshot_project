@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Mobile{% endblock title %}
+
+{% block main-content %}
+
+<div class="container my-5">
+
+    <h2 class="mb-4">Mobile</h2>
+
+    <div class="row">
+
+        {% for m in mobile %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+            <div class="card h-100">
+
+                <a href="{% url 'product-detail' m.id %}">
+                    <img src="{{ m.product_image.url }}"
+                         class="card-img-top"
+                         height="250px"
+                         alt="{{ m.title }}">
+                </a>
+
+                <div class="card-body text-center">
+                    <h5>{{ m.title }}</h5>
+                    <p class="fw-bold">₹{{ m.selling_price}}</p>
+                    <p>{{ m.brand|title }}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <h4>No mobile products found.</h4>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock main-content %}
